@@ -1,0 +1,37 @@
+services:
+  octoprint:
+    image: octoprint/octoprint
+    restart: unless-stopped
+    ports:
+      - 80:80
+    devices:
+    # use `python3 -m serial.tools.miniterm` , this requires pyserial
+    #  - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/video0
+      - /dev/ttyUSB0
+    volumes:
+     - octoprint:/octoprint
+    environment:
+     - ENABLE_MJPG_STREAMER=true
+
+  ####
+  # uncomment if you wish to edit the configuration files of octoprint
+  # refer to docs on configuration editing for more information
+  ####
+
+  #config-editor:
+  #  image: linuxserver/code-server
+  #  ports:
+  #    - 8443:8443
+  #  depends_on:
+  #    - octoprint
+  #  restart: unless-stopped
+  #  environment:
+  #    - PUID=0
+  #    - GUID=0
+  #    - TZ=America/Chicago
+  #  volumes:
+  #    - octoprint:/octoprint
+
+volumes:
+  octoprint:
