@@ -1,0 +1,1 @@
+Download: https://gitlab.com/alelec/wsl-usb-gui/-/releases to connect USB devices to WSL2
